@@ -1,0 +1,62 @@
+import pandas as pd
+import numpy as np
+import random
+
+# Set random seed for reproducibility
+np.random.seed(42)
+
+# Number of rows
+num_rows = 800
+
+data = []
+
+for i in range(num_rows):
+    
+    # 90% normal, 10% anomaly
+    if random.random() < 0.9:
+        # Normal behavior
+        completion_time = np.random.randint(40, 90)
+        errors_count = np.random.randint(0, 4)
+        safety_violations = 0
+        test_cases_passed = np.random.randint(85, 101)
+        code_complexity = np.random.randint(5, 15)
+        review_score = round(np.random.uniform(7, 10), 1)
+    else:
+        # Anomalous behavior
+        completion_time = np.random.randint(10, 150)
+        errors_count = np.random.randint(4, 12)
+        safety_violations = np.random.randint(1, 4)
+        test_cases_passed = np.random.randint(40, 80)
+        code_complexity = np.random.randint(15, 30)
+        review_score = round(np.random.uniform(2, 6), 1)
+    
+    data.append([
+        f"CAND_{np.random.randint(1,50)}",
+        f"TASK_{np.random.randint(1,20)}",
+        completion_time,
+        errors_count,
+        safety_violations,
+        test_cases_passed,
+        code_complexity,
+        review_score
+    ])
+
+columns = [
+    "candidate_id",
+    "task_id",
+    "completion_time",
+    "errors_count",
+    "safety_violations",
+    "test_cases_passed",
+    "code_complexity",
+    "review_score"
+]
+
+df = pd.DataFrame(data, columns=columns)
+
+# Save to CSV
+df.to_csv("avionics_intern_performance.csv", index=False)
+
+print("Dataset generated successfully!")
+print("Shape of dataset:", df.shape)
+print(df.head())

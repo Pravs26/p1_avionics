@@ -1,0 +1,3 @@
+candidate_id,task_id,completion_time,errors_count,safety_violations,test_cases_passed,code_complexity,review_score
+CAND_101,TASK_21,150,10,3,45,28,3.5
+CAND_102,TASK_22,60,1,0,95,10,8.5

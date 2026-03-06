@@ -82,6 +82,7 @@ GitHub Repository
 https://github.com/Pravs26/p1_avionics.git
 
 Deployment Link
+https://p1avionics-ustdkncs6l9jxmmyzdnvs7.streamlit.app/
 
 Author
 K. SAI PRAVALLIKA

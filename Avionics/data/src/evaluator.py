@@ -1,9 +1,6 @@
 import pandas as pd
 import os
 from anomaly_model import predict_anomaly
-
-
-# ---------- Percentage Calculation ----------
 def calculate_percentage(data):
 
     score = (
@@ -15,9 +12,6 @@ def calculate_percentage(data):
     )
 
     return round(score, 2)
-
-
-# ---------- Score based status ----------
 def get_score_status(score):
 
     if score >= 75:
@@ -27,15 +21,9 @@ def get_score_status(score):
     else:
         return "REVIEW REQUIRED"
 
-
-
-# ---------- ML + Score combined decision ----------
 def get_final_status(score, data):
 
-    # ML malpractice detection (single detector)
     malpractice = predict_anomaly(data)
-
-    # academic status
     if score >= 85:
         status = "GOOD TO GO"
     elif score >= 60:
@@ -44,16 +32,10 @@ def get_final_status(score, data):
         status = "MORE PRACTICE NEEDED"
 
     return status, malpractice
-
-
-    # ML has higher priority than marks
     if anomaly:
         return "REVIEW REQUIRED"
 
     return get_score_status(score)
-
-
-# ---------- Historical comparison ----------
 def malpractice_check(current_score):
 
     base = os.path.dirname(__file__)
@@ -78,11 +60,7 @@ def malpractice_check(current_score):
 
     return round(avg_history, 2), result
 
-
-# ---------- Main Evaluation Function ----------
 def run_evaluation(return_inputs=False):
-
-
     print("\nEnter Student Marks\n")
 
     data = {
@@ -94,7 +72,6 @@ def run_evaluation(return_inputs=False):
     "review_score": float(input("Review Score: "))
 }
 
-
     percentage = calculate_percentage(data)
     status = get_final_status(percentage, data)
     avg_history, malpractice = malpractice_check(percentage)
@@ -104,9 +81,6 @@ def run_evaluation(return_inputs=False):
     else:
        return percentage, status, avg_history, malpractice
 
-
-
-# ---------- Standalone Run ----------
 if __name__ == "__main__":
     p, s, avg, m = run_evaluation()
 

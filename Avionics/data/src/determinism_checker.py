@@ -12,7 +12,7 @@ def print_runs(runs):
             sys.stdout.flush()
             time.sleep(0.20)
 
-        print("")  # stop dots for this run
+        print("")  
         time.sleep(0.3)
 
 def print_table(results, status, avg_history):

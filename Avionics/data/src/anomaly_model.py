@@ -6,8 +6,6 @@ MODEL_PATH = os.path.join(os.path.dirname(__file__), "anomaly_model.pkl")
 
 def predict_anomaly(data):
     model = joblib.load(MODEL_PATH)
-
-    # IMPORTANT: same feature order as training
     features = np.array([[
         data["completion_time"],
         data["errors_count"],
@@ -18,5 +16,4 @@ def predict_anomaly(data):
     ]])
 
     result = model.predict(features)[0]
-
     return "MALPRACTICE DETECTED" if result == -1 else "NO MALPRACTICE DETECTED"
